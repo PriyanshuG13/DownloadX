@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>DownloadX</title>
+    <link rel="stylesheet" href="../styles/inputForm.css">
+</head>
+<body>
+<div class="headerBar">
+    <button id="leftButton">
+        <i class="glyphicon glyphicon-chevron-left" style="font-size: 20px;"></i><a href="Home.html">Back</a>
+    </button>
+    <h1 class="header">DownloadX</h1>
+    <button id="rightButton">
+        Commit <i class="glyphicon glyphicon-check" style="font-size: 20px;"></i>
+    </button>
+</div>
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close"><i class="glyphicon glyphicon-remove-sign" style="font-size: 1.2vw;"></i></span>
+            <h2 style="font-weight: 900;">CREATE ANIME DB</h2>
+        </div>
+        <div class="modal-body">
+            <div class="Table">
+                <div class="tableHeaders">
+                    <input value="SNo." readonly>
+                    <input value="Provider" readonly>
+                    <input value="Anime Name" readonly>
+                    <input value="Season" readonly>
+                    <input value="Episodes" readonly>
+                    <input value="Quality" readonly>
+                    <input value="Audio" readonly>
+                    <button id="addRow"><i class="glyphicon glyphicon-plus-sign" style="font-size: 1.4vw;"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button>Submit</button>
+        </div>
+    </div>
+</div>
+<script src="../linkers/inputForm.js"></script>
+</body>
+</html>

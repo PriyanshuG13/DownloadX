@@ -1,0 +1,547 @@
+html, body {
+    height: 100%;
+    background-color: #111;
+    margin: 0;
+    font-family: "Courier New";
+}
+
+html {
+    -webkit-app-region: drag;
+}
+
+::-webkit-input-placeholder {
+    color: azure;
+    font-family: "Courier New";
+    font-size: 1.2vw;
+}
+
+button {
+    border: none;
+    font-size: 1.2vw;
+    background-color: dodgerblue;
+    font-weight: bold;
+    font-family: "Courier New";
+    color: azure;
+    cursor: pointer;
+    outline: none;
+}
+
+#leftButton {
+    font-size: 28px;
+    align-self: center;
+    grid-area: 'back';
+}
+
+#rightButton {
+    font-size: 2vw;
+    align-self: center;
+    grid-area: 'back';
+}
+
+button a {
+    text-decoration: none;
+    color: azure;
+}
+
+button:hover {
+    background-color: deepskyblue;
+}
+
+button.active {
+    background-color: #ccc;
+}
+
+.inputField {
+    width: 32vw;
+    border-radius: 0.25vw;
+    border-color: azure;
+    border-width: 1px;
+    margin: 0.2vw;
+    font-size: 1.2vw;
+    background-color: dodgerblue;
+    color: azure;
+}
+
+.header {
+    font-size: 48px;
+    font-weight: bold;
+    font-family: "Courier New";
+    color: azure;
+    margin: 0;
+    grid-area: 'header';
+    align-self: center;
+    justify-self: center;
+}
+
+.outer-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.headerBar {
+    display: grid;
+    grid-template-columns: 92% 8%;
+    border-bottom: solid azure;
+    background-color: royalblue;
+}
+
+.containerMiddle {
+    display: grid;
+    grid-template-rows: auto;
+    grid-gap: 0.5vw;
+}
+
+.inner-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 0.5vw;
+}
+
+.inner-container-up, .inner-container-middle, .inner-container-down {
+    display: grid;
+    background-color: royalblue;
+    padding: 0 1vw 1vw 1vw;
+}
+
+.inner-container-up {
+    width: 49.75vw;
+    height: 20vw;
+}
+
+.Table {
+    display: grid;
+    grid-template-rows: auto;
+    width: fit-content;
+    object-fit: contain;
+}
+
+.inner-table {
+    justify-self: center;
+    overflow-y: scroll;
+}
+
+.inner-table .tableHeaders, .inner-table .tableRows {
+    display: grid;
+    grid-template-columns: 3.5vw 32.5vw 8.75vw 2vw;
+}
+
+.modal-body .tableHeaders, .modal-body .tableRows {
+    display: grid;
+    grid-template-columns: 4.25vw 12vw 36vw 6.5vw 8.5vw 13vw 6vw 2.5vw;
+}
+
+.tableHeaders input {
+    font-weight: bolder;
+    font-size: 1.6vw;
+    background-color: orangered;
+    outline: none;
+    border: red solid 0.1vw;
+    padding: 0.2vw;
+}
+
+.tableRows input {
+    font-size: 1.3vw;
+    background-color: orange;
+    outline: none;
+    border: orangered solid 0.1vw;
+    padding: 0.2vw;
+    max-height: 2vw;
+}
+
+.tableRows button {
+    border: orangered solid 0.1vw;
+    background-color: orange;
+    max-height: 2vw;
+    color: azure;
+    cursor: pointer;
+    outline: none;
+    opacity: 0;
+}
+
+.tableHeaders button {
+    border: red solid 0.1vw;
+    background-color: orangered;
+    color: azure;
+    cursor: pointer;
+    outline: none;
+    opacity: 0;
+}
+
+.tableHeaders button:hover {
+    opacity: 1;
+}
+
+.tableRows button:hover {
+    opacity: 1;
+}
+
+.inner-container-middle {
+    width: 49.75vw;
+    height: 9vw;
+}
+
+.inner-container-down {
+    display: none;
+    width: 60vw;
+    max-height: 30vw;
+}
+
+.downNew {
+    display: grid;
+    grid-template-columns: 12.5vw auto;
+    grid-template-rows: 2vw;
+    align-items: center;
+    justify-content: center;
+}
+
+.downAuto {
+    min-height: 90%;
+    overflow-y: scroll;
+}
+
+.downManu {
+    display: grid;
+    grid-template-columns: 75% 8%;
+    align-content: center;
+    justify-content: center;
+    grid-gap: 0.25vw;
+}
+
+.headCen {
+    font-size: 2vw;
+    font-weight: bold;
+    color: azure;
+    justify-self: center;
+    text-decoration: underline;
+}
+
+.select-box {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    flex: 1;
+}
+
+.select-box .options-container {
+    color: azure;
+    background-color: dodgerblue;
+    font-family: "Courier New";
+    max-height: 0;
+    width: 100%;
+    opacity: 0;
+    z-index: 10;
+    transition: all 0.4s;
+    /* border-radius: 8px; */
+    overflow: hidden;
+    order: 1;
+    align-self: center;
+}
+
+.selected {
+    background: dodgerblue;
+    font-family: "Courier New";
+    /* min-width: 40vw; */
+    /* border-radius: 8px; */
+    margin-bottom: 0.5vw;
+    color: azure;
+    position: relative;
+    order: 0;
+    font-size: 1.2vw;
+    font-weight: bold;
+}
+
+.selected::after {
+    content: '';
+    background: url("../img/arrow-down.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    height: 100%;
+    width: 3.5vw;
+    right: 0;
+    top: 0;
+    transition: all 0.4s;
+}
+
+.select-box .options-container.active {
+    max-height: 15vw;
+    opacity: 1;
+    overflow-y: scroll;
+}
+
+.select-box .options-container.active + .selected::after {
+    transform: rotateX(180deg);
+    top: -0.15vw;
+}
+
+.select-box .options-container.active + .selected {
+    background-color: deepskyblue;
+}
+
+.select-box .options-container::-webkit-scrollbar {
+    width: 5px;
+}
+
+.select-box .options-container::-webkit-scrollbar-thumb {
+    background: azure;
+    border-radius: 0.5vw;
+}
+
+.select-box .option,
+.selected {
+    padding: 0.7vw 1vw;
+    cursor: pointer;
+}
+
+.select-box .option:hover, .selected:hover {
+    background: deepskyblue;
+}
+
+.select-box label {
+    cursor: pointer;
+    font-size: 1vw;
+}
+
+.select-box .option .aniR {
+    display: none;
+}
+
+.copyBox {
+    display: grid;
+    grid-template-columns: 80% 8%;
+    align-items: center;
+    justify-content: center;
+    margin: 1vw;
+}
+
+.copyText {
+    width: 100%;
+    align-self: center;
+    align-content: center;
+    border: orangered solid 2px;
+    background-color: orange;
+    outline: none;
+    padding: 0.5vw;
+    color: azure;
+    font-size: 1.4vw;
+    font-family: inherit;
+    overflow-x: scroll;
+    font-weight: bold;
+    border-bottom-left-radius: 0.4vw;
+    border-top-left-radius: 0.8vw;
+}
+
+.copyButton {
+    width: 100%;
+    background-color: orange;
+    border: orangered solid 2px;
+    background-color: orange;
+    outline: none;
+    color: azure;
+    font-size: 1.55vw;
+    padding-top: 0.75vw;
+    font-family: inherit;
+    border-bottom-right-radius: 0.8vw;
+    border-top-right-radius: 0.4vw;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    font-weight: bolder;
+    border-left: none;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.copyButton:hover {
+    background-color: orangered;
+}
+
+.upAniDB {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: auto auto;
+    grid-gap: 0.2vw;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.upAniDB input {
+    width: 28vw;
+    border-radius: 0.25vw;
+    border-color: azure;
+    border-width: 1px;
+    font-size: 1.2vw;
+    background-color: dodgerblue;
+    color: azure;
+    align-self: center;
+}
+
+.upAniDB label {
+    font-size: 1.5vw;
+    font-weight: lighter;
+    color: azure;
+    align-self: center;
+}
+
+.weekDays {
+    position: absolute;
+    font-size: 1vw;
+    margin: 0.5vw;
+    letter-spacing: 0.5vw;
+    /* opacity: 0.5; */
+    color: azure;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 5;
+    padding-top: 8vw;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid azure;
+    border-radius: 0.5vw;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    background-color: royalblue;
+}
+
+#modal-content-table {
+    width: 90%;
+}
+
+#modal-content-insert {
+    width: 45%;
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 0.25vw 0.5vw;
+    color: white;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    border-bottom: azure solid 0.2vw;
+}
+
+.modal-body {
+    padding: 0.5vw;
+    overflow-y: scroll;
+    max-height: 20vw;
+}
+
+.modal-footer {
+    padding: 0.5vw;
+    border-top: azure solid 0.2vw;
+    color: white;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+}
+
+.inner-output {
+    display: grid;
+    grid-template-columns: 90%;
+    align-items: center;
+    justify-content: center;
+}
+
+#ManualOutput {
+    display: none;
+    border-bottom: solid azure 0.25vw;
+    border-top: solid azure 0.25vw;
+}
+
+#NewOutput {
+    display: none;
+    max-height: 100%;
+    overflow-y: scroll;
+    border-bottom: solid azure 0.25vw;
+}
+
+.loader {
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1;
+    border: 0.75vw solid azure; /* Light grey */
+    border-top: 0.75vw double dodgerblue; /* Blue */
+    border-radius: 50%;
+    width: 4vw;
+    height: 4vw;
+    animation: spin 1s linear infinite;
+}
+
+#loader-1 {
+    left: 22.5%;
+    top: 25%;
+}
+
+#loader-2 {
+    left: 48.5%;
+    top: 82.5%;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+@media (max-width: 1000px) {
+    .inner-container {
+        grid-template-columns: auto;
+        justify-content: center;
+    }
+
+    .inner-container-up, .inner-container-middle, .inner-container-down {
+        width: 100vw;
+    }
+
+    /* .headCen{
+        font-size: 24px;
+    }
+    .copyText{
+        font-size: 14px;
+    } */
+}

@@ -1,0 +1,14 @@
+{
+  "name": "downloadx",
+  "version": "1.0.0",
+  "description": "Anime Downloader",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Priyanshu",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^13.1.6"
+  }
+}
