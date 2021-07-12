@@ -7,7 +7,7 @@
     <title>DownloadX</title>
     <link rel="stylesheet" href="../styles/Home.css">
 </head>
-<body onload="AnimeListFull() || DownAnimeAuto()">
+<body>
 <div class="outer-container">
     <div class="headerBar">
         <!-- <button id="leftButton">
@@ -44,7 +44,7 @@
                     Commit Changes to DB</button>
             </div>
             <div class="inner-container-middle">
-                <div class="headCen">Manually Select</div>
+                <div class="headCen" onload="AnimeListFull() || DownAnimeAuto()">Manually Select</div>
                 <div class="downManu">
                     <div class="select-box">
                         <div class="options-container"></div>

@@ -1,73 +1,74 @@
-import DatabaseManager from './Database/DatabaseManager'
-import copy from 'copy-to-clipboard';
+const DatabaseManager = require('./Database/DatabaseManager.js')
+const puppeteer = require("puppeteer");
 
-export default class Downloader extends DatabaseManager {
+class Downloader extends DatabaseManager {
     constructor(delay = 60) {
         super();
         this.URL = "https://nyaa.iss.one/?f=0&c=0_0&q="
-        this.delay = delay
     }
 
-    downloadFromDB(n) {
-        url = this.URL
+    async downloadFromDB(n) {
+        let url = this.URL
+        const row = this.animedb['Downloader'][n]
         // row = list(self.animedb['Downloader'][n].values())
-        ep = this.incrementEP(row[3])
-        for (let j = 0; j < 6; j++) {
-            if (row[j] == 'N/A')
+        let ep = this.incrementEP(row['EP'])
+        for (let i in row) {
+            if (row[i] == 'N/A' || i == 'Air_Day')
                 continue
-            else if (j == 3)
+            else if (i == 'EP')
                 url += ep + '+'
             else
-                url += row[j] + '+'
+                url += row[i] + '+'
         }
-        console.log(row[1] + "EP-" + row[3] + "->" + ep)
-        try {
-            this.downloader(url)
+        const key = row['Anime_Name'] + " " + row['Audio'] + " EP-" + row['EP'] + " -> " + ep
+        console.log(key)
+        const magnet = await this.downloader(url)
+        if (magnet != 1) {
             console.log("COPIED TO CLIPBOARD\nUPDATED EPISODE IN DATABASE")
             this.update(n, "EP", ep)
-            return this.delay
-        } catch (err) {
-            console.log("NOT YET AVAILABLE")
-            return 1
+            return {key: key, magnet: magnet}
+        } else {
+            return {key: key + "No New Episode available!", magnet: -1}
         }
     }
 
-    downloadFromInput(name, ep) {
-        url = this.URL + "+"
+    async downloadFromInput(name, ep) {
+        let url = this.URL + "+"
         url += name + "+" + ep
         ep = this.incrementEP(row[3])
-        try {
-            this.downloader(url)
+        const magnet = await this.downloader(url)
+        if (magnet != 1) {
+            const key = name + " DOWNLOADING EP-" + ep
             console.log("DOWNLOADING EP-" + ep)
-            return this.delay
-        } catch (err) {
-            console.log("NOT YET AVAILABLE")
-            return 1
-        }
+            return {key: key, magnet: magnet}
+        } else return {key: key, magnet: -1}
+
     }
 
     incrementEP(ep) {
-        let ep = (Number(ep) + 1).toString()
+        ep = (Number(ep) + 1).toString()
         if (Number(ep) < 10) {
             ep = "0" + ep
         }
         return ep
     }
 
-    downloader(url) {
+    async downloader(url) {
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
         await page.goto(url)
+        try {
+            const [el] = await page.$x('/html/body/div[1]/div[1]/table/tbody/tr[1]/td[3]/a[2]')
+            const link = await el.getProperty('href')
+            const magnet = await link.jsonValue()
+            return magnet
+        } catch (err) {
+            console.log("NOT YET AVAILABLE")
+            return 1
+        } finally {
+            browser.close();
+        }
 
-        const [el] = await page.$x('/html/body/div[1]/div[1]/table/tbody/tr[1]/td[3]/a[2]')
-        const link = await el.getProperty('href')
-        const magnet = await link.jsonValue()
-
-        copy(magnet)
-        console.log(magnet)
-        // this.openClient(magnet)
-        browser.close();
-        return magnet
     }
 
     // openClient(link){
@@ -81,10 +82,11 @@ export default class Downloader extends DatabaseManager {
     // }
 
     // commitToDB(){
-    //     console.log("Commit?? : ")
-    //     if (input().upper() == 'Y'){
-    //         this.commit()
-    //         console.log("COMMITED UPDATES")
-    //     }
+    //     this.commit()
     // }
 }
+
+module.exports = Downloader;
+
+// downloader = new Downloader()
+// downloader.downloadFromDB(3)

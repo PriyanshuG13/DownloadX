@@ -12,6 +12,7 @@
     "electron": "^13.1.6"
   },
   "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
     "puppeteer": "^10.1.0"
   }
 }

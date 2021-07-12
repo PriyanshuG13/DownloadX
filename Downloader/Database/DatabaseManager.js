@@ -1,20 +1,19 @@
 const fs = require('fs');
 const path = require('path');
 
-export default class DatabaseManager {
+class DatabaseManager {
     constructor() {
         this.mainkey = 'Downloader'
         this.animedb = {}
-        // this.curPath = pathlib.Path(__file__).parent.absolute()
-        // this.animedbFilePath = f'{str(self.curPath)}/Anime_Database.json'
+        this.animedbFilePath = path.join(__dirname, './Anime_Database.json')
         try {
-            this.animedb = require('./Anime_Database.json');
+            this.animedb = require(this.animedbFilePath);
         } catch (err) {
             this.animedb = {
                 Downloader: []
             }
             const animedb = JSON.stringify(this.animedb, null, 4);
-            fs.writeFile('./Anime_Database.json', animedb, function (err) {
+            fs.writeFile(this.animedbFilePath, animedb, function (err) {
                 if (err) return;
             });
         }
@@ -69,19 +68,21 @@ export default class DatabaseManager {
             }
         }
         const animedb = JSON.stringify(this.animedb, null, 4);
-        fs.writeFile('./Anime_Database.json', animedb, function (err) {
+        fs.writeFile(this.animedbFilePath, animedb, function (err) {
             if (err) return;
         });
     }
 
-    show() {
+    showJSON() {
         console.log(this.animedb)
     }
 
 }
 
+module.exports = DatabaseManager;
+
 // dm = new DatabaseManager()
-// dm.show()
+// dm.showJSON()
 // dm.insert('[SubsPlease],Boku No Hero Academia,N/A,(1080p),(SUB),Saturday,100')
 // dm.commit()
-// dm.show()
+// dm.showJSON()
