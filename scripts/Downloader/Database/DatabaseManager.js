@@ -23,15 +23,15 @@ class DatabaseManager {
 
     insert(row) {
         const adbn = this.animedbEdited[this.mainkey]
-        row = row.split(",")
+        // row = row.split(",")
         row = {
             Provider: row[0],
             Anime_Name: row[1],
             Season: row[2],
-            EP: row[6],
-            Quality: row[3],
-            Audio: row[4],
-            Air_Day: row[5],
+            EP: row[3],
+            Quality: row[4],
+            Audio: row[5],
+            Air_Day: row[6],
             Commit: true
         }
         adbn.push(row)
@@ -54,17 +54,13 @@ class DatabaseManager {
         const adbn = this.animedbEdited[this.mainkey]
         const adb = this.animedb[this.mainkey]
         for (let i in adbn) {
-            try {
-                if (adbn[i]['Commit'])
-                    delete adbn[i]['Commit']
+            if (adbn[i]['Commit']){
+                delete adbn[i]['Commit']
                 try {
                     adb[i] = adbn[i]
                 } catch (err) {
                     adb.push(adbn[i])
                 }
-                j += 1
-            } catch (err) {
-                console.log(err)
             }
         }
         const animedb = JSON.stringify(this.animedb, null, 4);

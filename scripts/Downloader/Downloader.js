@@ -2,7 +2,7 @@ const DatabaseManager = require('./Database/DatabaseManager.js')
 const puppeteer = require("puppeteer");
 
 class Downloader extends DatabaseManager {
-    constructor(delay = 60) {
+    constructor() {
         super();
         this.URL = "https://nyaa.iss.one/?f=0&c=0_0&q="
     }
@@ -10,7 +10,6 @@ class Downloader extends DatabaseManager {
     async downloadFromDB(n) {
         let url = this.URL
         const row = this.animedb['Downloader'][n]
-        // row = list(self.animedb['Downloader'][n].values())
         let ep = this.incrementEP(row['EP'])
         for (let i in row) {
             if (row[i] == 'N/A' || i == 'Air_Day')
@@ -24,7 +23,7 @@ class Downloader extends DatabaseManager {
         console.log(key)
         const magnet = await this.downloader(url)
         if (magnet != 1) {
-            console.log("COPIED TO CLIPBOARD\nUPDATED EPISODE IN DATABASE")
+            // console.log("COPIED TO CLIPBOARD\nUPDATED EPISODE IN DATABASE")
             this.update(n, "EP", ep)
             return {key: key, magnet: magnet}
         } else {
@@ -64,11 +63,10 @@ class Downloader extends DatabaseManager {
             return magnet
         } catch (err) {
             console.log("NOT YET AVAILABLE")
-            return 1
+            return -1
         } finally {
             browser.close();
         }
-
     }
 
     // openClient(link){

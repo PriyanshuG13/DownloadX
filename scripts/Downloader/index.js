@@ -1,7 +1,7 @@
 // const {PythonShell} = require('python-shell');
 const path = require('path');
 
-const Downloader = require('./Downloader.js')
+const Downloader = require('../scripts/Downloader/Downloader.js')
 
 const dl = new Downloader()
 
@@ -48,18 +48,19 @@ window.onclick = function (event) {
 }
 
 function AnimeListFull() {
-    const rows = dl.animedb
+    const rows = dl.animedb['Downloader']
     // let animedb = []
     for (let i in rows) {
         row = rows[i]
         let message = ""
         for (let j in row) {
             if (j == 'EP')
-                message += "EP-" + row[j]
+                message += " EP-" + row[j] + " -> " + dl.incrementEP(row[j])
             else if (j != 'Provider' &&
                 j != 'Quality' &&
-                row[j] != 'None')
-                message += row[j]
+                j != 'Air_Day' &&
+                row[j] != 'N/A')
+                message += " " + row[j]
         }
         let op = document.createElement('div');
         let label = document.createElement('label');
@@ -80,7 +81,7 @@ function AnimeListFull() {
 
 async function DownAnimeAuto() {
     document.getElementById("loader-1").style.display = "block";
-    const rows = dl.animedb
+    const rows = dl.animedb['Downloader']
     const d = new Date();
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     let autodl = []
@@ -106,6 +107,7 @@ async function DownAnimeAuto() {
             input.style.backgroundColor = "red";
             button.style.backgroundColor = "red";
         } else {
+            showUpdates()
             // button.onclick = () => copyToClipboard(val['magnet']);
         }
         let icon = document.createElement('i');
@@ -129,6 +131,7 @@ async function DownAnimeManu() {
         alert(manudl['key']);
         document.getElementById("loader-2").style.display = "none";
     } else {
+        showUpdates()
         document.getElementsByClassName("inner-container-down")[0].style.display = "grid";
         document.getElementById("ManualOutput").style.display = "grid";
         document.getElementById("copyT").value = manudl['key'];
@@ -181,64 +184,82 @@ async function DownAnimeNew() {
     document.getElementById("loader-2").style.display = "none";
 }
 
-// function showUpdates() {
-//     const options = {
-//         scriptPath: path.join(__dirname, '../pyPro/'),
-//         args: ["showUpdates"]
-//     }
+function showUpdates(){
+    const rows = dl.animedbEdited['Downloader']
+    try{
+        const rows = document.querySelectorAll('.tableRows')
+        rows.forEach((row) => {
+            row.remove()
+        })
+    } catch(err){
+        console.log(err)
+    }
+    
+    let sno = 0
+    for (let i in rows) {
+        let data = rows[i]
+        ++sno
+        if (data['Commit']){
+            console.log(data)
+            const row = document.createElement('div');
+            row.className = 'tableRows';
+            Table.appendChild(row);
+            for(let j in data){
+                if (j === 'Provider' || j === 'Anime_Name' || j === 'EP') {
+                    const aniliCol = document.createElement('input');
+                    aniliCol.readOnly = true;
+                    if (j !== 'Provider') {
+                        aniliCol.value = data[j];
+                    } else {
+                        aniliCol.value = sno;
+                        aniliCol.id = 'index'
+                        aniliCol.style.backgroundColor = 'orangered';
+                        aniliCol.style.borderColor = 'red';
+                    } 
+                    if (j === 'EP')
+                        aniliCol.style.textAlign = 'right';
+                    row.appendChild(aniliCol);
+                }
+            }
+            const button = document.createElement('button');
+            const i = document.createElement('i');
+            button.class = 'remove'
+            button.value = sno-1
+            button.onclick = () => {
+                delete dl.animedbEdited.Downloader[button.value].Commit
+                showUpdates()
+            }
+            i.className = 'glyphicon glyphicon-remove'
+            i.style.fontSize = "1vw"
+            button.appendChild(i);
+            row.appendChild(button);
+        }
+    }
+}
 
-//     let anili = [];
-//     const aniList = new PythonShell('DownloadAnime.py', options);
+function commitToDB(){
+    if (confirm("Are you Sure you want to commit the changes.")) {
+        dl.commit()
+        alert("Commit Successful....");
+        showUpdates()
+        window.location.reload();
+    } else {
+        alert("Commit was Unsuccessful....");
+    }
+}
 
-//     aniList.on('message', function (message) {
-//         let i;
-//         // let j=1;
-//         let ele = [];
-//         let m = "";
-//         for (i in message) {
-//             if (message[i] === "|") {
-//                 ele.push(m);
-//                 m = "";
-//             } else if (message[i] === "$") {
-//                 anili.push(ele);
-//                 ele = [];
-//             } else {
-//                 m += message[i];
-//             }
-//         }
+function insertDB(){
+    const insertAnime = document.querySelectorAll(".upAniDB input")
+    let row = []
 
-//         anili.forEach((aniliRow) => {
-//             const row = document.createElement('div');
-//             row.className = 'tableRows';
-//             Table.appendChild(row);
-//             aniliRow.forEach((a, idx) => {
-//                 if (idx === 0 || idx === 2 || idx === 4) {
-//                     const aniliCol = document.createElement('input');
-//                     aniliCol.readOnly = true;
-//                     aniliCol.value = a;
-//                     if (idx === 0) {
-//                         aniliCol.id = 'index'
-//                         aniliCol.style.backgroundColor = 'orangered';
-//                         aniliCol.style.borderColor = 'red';
-//                     }
-//                     if (idx === 4) {
-//                         aniliCol.style.textAlign = 'right';
-//                     }
-//                     row.appendChild(aniliCol);
-//                 }
-//             })
-//             const button = document.createElement('button');
-//             const i = document.createElement('i');
-//             button.class = 'remove'
-//             i.className = 'glyphicon glyphicon-check'
-//             i.style.fontSize = "1vw"
-//             button.appendChild(i);
-//             row.appendChild(button);
-//         })
-//     })
-// }
+    insertAnime.forEach((a) => {
+        row.push(a.value)
+    })
 
-// showUpdates()
+    dl.insert(row)
+    showUpdates()
+}
+
 
 // function copyToClipboard(magnet, sno) {
 //     const options = {

@@ -156,7 +156,7 @@ button.active {
 
 .tableHeaders, .tableRows {
     display: grid;
-    grid-template-columns: 4.25vw 12vw 36vw 6.5vw 8.5vw 13vw 6vw 2.5vw;
+    grid-template-columns: 4.25vw 10vw 32vw 6.5vw 8.2vw 13.3vw 5.5vw 9vw;
 }
 
 .tableHeaders input {

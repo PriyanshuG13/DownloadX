@@ -2,7 +2,7 @@
   "name": "downloadx",
   "version": "1.0.0",
   "description": "Anime Downloader",
-  "main": "main.js",
+  "main": "./scripts/main.js",
   "scripts": {
     "start": "electron ."
   },

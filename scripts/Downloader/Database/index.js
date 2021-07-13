@@ -15,5 +15,5 @@
 
 // scrapperPuppeteer('https://nyaa.iss.one')
 
-const DatabaseManager = require('./Database/DatabaseManager.js')
-const Downloader = require('./Downloader.js')
+// const DatabaseManager = require('./Database/DatabaseManager.js')
+// const Downloader = require('./Downloader.js')

@@ -7,7 +7,7 @@
     <title>DownloadX</title>
     <link rel="stylesheet" href="../styles/Home.css">
 </head>
-<body>
+<body onload="AnimeListFull() || DownAnimeAuto()">
 <div class="outer-container">
     <div class="headerBar">
         <!-- <button id="leftButton">
@@ -40,11 +40,11 @@
                         </div>
                     </div>
                 </div>
-                <button style="margin: 0.5vw 4vw;max-height: 2.5vw;" onclick="commitUpdates()">
+                <button style="margin: 0.5vw 4vw;max-height: 2.5vw;" onclick="commitToDB()">
                     Commit Changes to DB</button>
             </div>
             <div class="inner-container-middle">
-                <div class="headCen" onload="AnimeListFull() || DownAnimeAuto()">Manually Select</div>
+                <div class="headCen">Manually Select</div>
                 <div class="downManu">
                     <div class="select-box">
                         <div class="options-container"></div>
@@ -132,6 +132,8 @@
                 <input placeholder="[1080p] or [CR-Dub 720p x264 AAC]"/>
                 <label>Audio:</label>
                 <input placeholder="(SUB) or (DUB)"/>
+                <label>Air_Day:</label>
+                <input placeholder="Sunday, Monday, etc"/>
             </div>
         </div>
         <div class="modal-footer">
@@ -139,32 +141,7 @@
         </div>
     </div>
 </div>
-<!--<div class="modal">-->
-<!--    <div class="modal-content" id="modal-content-table">-->
-<!--        <div class="modal-header">-->
-<!--            <span class="close"><i class="glyphicon glyphicon-remove-sign" style="font-size: 1.2vw;"></i></span>-->
-<!--            <h2 style="font-weight: 900;">CREATE ANIME DB</h2>-->
-<!--        </div>-->
-<!--        <div class="modal-body">-->
-<!--            <div class="Table">-->
-<!--                <div class="tableHeaders">-->
-<!--                    <input value="SNo." readonly>-->
-<!--                    <input value="Provider" readonly>-->
-<!--                    <input value="Anime Name" readonly>-->
-<!--                    <input value="Season" readonly>-->
-<!--                    <input value="Episodes" readonly>-->
-<!--                    <input value="Quality" readonly>-->
-<!--                    <input value="Audio" readonly>-->
-<!--                    <button id="addRow"><i class="glyphicon glyphicon-plus-sign" style="font-size: 1.4vw;"></i></button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="modal-footer">-->
-<!--            <button onclick="openInsert()">Submit</button>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 <progress value="50" max="100"></progress>
-<script src="../Downloader/index.js"></script>
+<script src="../scripts/Downloader/index.js"></script>
 </body>
 </html>

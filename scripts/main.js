@@ -9,7 +9,7 @@ const createWindow = () => {
     const mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
-        icon: __dirname + './img/icon.ico',
+        icon: __dirname + '../images/icons/icon.ico',
         webPreferences: {
             // preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: true,
@@ -17,7 +17,7 @@ const createWindow = () => {
             enableRemoteModule: true,
         }
     });
-    mainWindow.loadFile(path.join(__dirname, './pages/Home.html'));
+    mainWindow.loadFile(path.join(__dirname, '../pages/Home.html'));
 
     // Open the DevTools.
     // mainWindow.webContents.openDevTools();
