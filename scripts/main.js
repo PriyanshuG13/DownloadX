@@ -18,9 +18,6 @@ const createWindow = () => {
         }
     });
     mainWindow.loadFile(path.join(__dirname, '../pages/Home.html'));
-
-    // Open the DevTools.
-    // mainWindow.webContents.openDevTools();
 };
 
 app.on('ready', createWindow);

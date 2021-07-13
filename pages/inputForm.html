@@ -7,17 +7,17 @@
     <title>DownloadX</title>
     <link rel="stylesheet" href="../styles/inputForm.css">
 </head>
-<body>
+<body onload = 'showTable()'>
 <div class="headerBar">
     <button id="leftButton">
         <i class="glyphicon glyphicon-chevron-left" style="font-size: 20px;"></i><a href="Home.html">Back</a>
     </button>
     <h1 class="header">DownloadX</h1>
-    <button id="rightButton">
+    <!-- <button id="rightButton">
         Commit <i class="glyphicon glyphicon-check" style="font-size: 20px;"></i>
-    </button>
+    </button> -->
 </div>
-<div>
+<div class='TableEditor'>
     <div class="Table">
         <div class="tableHeaders">
             <input value="SNo." readonly>
@@ -28,10 +28,13 @@
             <input value="Quality" readonly>
             <input value="Audio" readonly>
             <input value="Air_Day" readonly>
+            <input readonly>
         </div>
     </div>
-    <button id="addRow">Add Row</button>
-            <button>Submit</button>
+    <div class='EditorButtons'>
+        <button id="addRow">Add Row</button>
+        <button>commit</button>
+    </div>
 </div>
 <script src="../scripts/inputForm.js"></script>
 </body>

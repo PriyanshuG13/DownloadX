@@ -277,35 +277,3 @@ function insertDB(){
 //         alert("Nothing to copy.....");
 //     }
 // }
-
-// function insertDB() {
-//     const upAniInput = document.querySelectorAll(".upAniDB input")
-//     let upAnili = []
-
-//     upAniInput.forEach((a) => {
-//         upAnili.push(a.value)
-//     })
-
-//     const options = {
-//         scriptPath: path.join(__dirname, '../pyPro/'),
-//         args: ["insertDB", upAnili]
-//     }
-
-//     const aniList = new PythonShell('AnimeDB.py', options);
-
-//     aniList.on()
-//     alert("Inserted Successfully....")
-// }
-
-// function commitUpdates(sno) {
-//     alert(sno)
-//     const options = {
-//         scriptPath: path.join(__dirname, '../pyPro/'),
-//         args: ["commitChanges", sno]
-//     }
-//     const py = new PythonShell('AnimeDB.py', options);
-
-//     py.on('message', function (message) {
-//         alert(sno)
-//     })
-// }

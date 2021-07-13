@@ -1,29 +1,10 @@
-const Downloader = require('../Downloader/Downloader.js')
+const Downloader = require('../scripts/Downloader/Downloader.js')
 
 const dl = new Downloader()
 
-const modal = document.getElementById("myModal");
-const btn = document.getElementById("rightButton");
-const span = document.getElementsByClassName("close")[0];
-
-btn.onclick = function () {
-    modal.style.display = "block";
-}
-
-span.onclick = function () {
-    modal.style.display = "none";
-}
-
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-
+let count = 1;
 const addRowBtn = document.getElementById("addRow");
 const Table = document.getElementsByClassName("Table")[0];
-let count = 1;
-
 addRowBtn.onclick = () => {
     const row = document.createElement('div');
     row.className = 'tableRows';
@@ -49,9 +30,23 @@ addRowBtn.onclick = () => {
     row.appendChild(aud);
     const air = document.createElement('input');
     row.appendChild(air);
+    const rem = document.createElement('button');
+    const i = document.createElement('i');
+    rem.class = 'remove'
+    i.className = 'glyphicon glyphicon-remove'
+    i.style.fontSize = "1vw"
+    rem.appendChild(i);
+    row.appendChild(rem);
 }
 
 function showTable() {
+
+    function addRow(val){
+        const aniliCol = document.createElement('input');
+        aniliCol.value = val;
+        return aniliCol
+    }
+
     const rows = dl.animedb['Downloader']
     for (let i in rows) { 
         const row = document.createElement('div');
@@ -60,6 +55,7 @@ function showTable() {
         const aniliCol = addRow(count++)
         aniliCol.style.backgroundColor = 'orangered';
         aniliCol.style.borderColor = 'red';
+        aniliCol.readOnly = true;
         row.appendChild(aniliCol);
         for (let j in rows[i]) {
             const aniliCol = addRow(rows[i][j])
@@ -68,33 +64,16 @@ function showTable() {
             }
             row.appendChild(aniliCol);
         }
+        const rem = document.createElement('button');
+        const ico = document.createElement('i');
+        rem.class = 'remove'
+        // rem.value = sno-1
+        // rem.onclick = () => {
+        //     dl.delete(rem.value)
+        // }
+        ico.className = 'glyphicon glyphicon-remove'
+        ico.style.fontSize = "1vw"
+        rem.appendChild(ico);
+        row.appendChild(rem);
     }
 }
-
-function addRow(val){
-    const aniliCol = document.createElement('input');
-    aniliCol.readOnly = true;
-    aniliCol.value = val;
-    return aniliCol
-}
-
-showTable()
-
-// function insertDB() {
-//     const {PythonShell} = require('python-shell');
-//     const path = require('path');
-//     let row = []
-
-//     const options = {
-//         scriptPath: path.join(__dirname, '../pyPro/'),
-//         args: ["insertDB", row]
-//     }
-
-//     const aniList = new PythonShell('AnimeDB.py', options);
-
-//     aniList.on('message', function (message) {
-//         console.log(message)
-//     })
-// }
-
-// insertDB()
