@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8f830e08-4146-43f4-8be4-791fb9d0e7a6" name="Default Changelist" comment="Working on Downloader GUI" />
+    <list default="true" id="8f830e08-4146-43f4-8be4-791fb9d0e7a6" name="Default Changelist" comment="Working on Downloader GUI">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,15 +58,13 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -111,6 +111,10 @@
       <workItem from="1626169953332" duration="821000" />
       <workItem from="1626170782527" duration="1000" />
       <workItem from="1626203719702" duration="201000" />
+      <workItem from="1626207722498" duration="91000" />
+      <workItem from="1626208049822" duration="86000" />
+      <workItem from="1626208182754" duration="7000" />
+      <workItem from="1626281890213" duration="106000" />
     </task>
     <task id="LOCAL-00001" summary="Working on Downloader.js">
       <created>1626039849129</created>
@@ -133,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626203777612</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Working on Downloader GUI">
+      <created>1626207766669</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1626207766669</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

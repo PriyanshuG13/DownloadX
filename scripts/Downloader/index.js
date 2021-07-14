@@ -11,7 +11,6 @@ const selected = document.querySelector(".selected");
 const optionsContainer = document.querySelector(".options-container");
 selected.addEventListener("click", () => {
     optionsContainer.classList.toggle("active");
-    // const copyBoxManu = document.getElementById("copyBoxManu");
 });
 window.onclick = function (event) {
     if (event.target !== selected) {
@@ -90,34 +89,46 @@ async function DownAnimeAuto() {
             autodl.push(await dl.downloadFromDB(i))
         }
     }
-    autodl.forEach((val, idx) => {
-        let autoCon = document.querySelector(".downAuto");
-        let box = document.createElement('div');
-        box.className = "copyBox";
-        let input = document.createElement('input');
-        input.type = "text";
-        input.className = "copyText";
-        input.id = 'copyT-' + (idx + 1);
-        input.readOnly = true;
-        input.value = val['key'];
-        let button = document.createElement('button');
-        button.className = "copyButton";
-        if (val['magnet'] === -1) {
-            button.disabled = true;
-            input.style.backgroundColor = "red";
-            button.style.backgroundColor = "red";
-        } else {
-            showUpdates()
-            // button.onclick = () => copyToClipboard(val['magnet']);
-        }
-        let icon = document.createElement('i');
-        icon.className = "glyphicon glyphicon-magnet";
-        icon.style = "color:black;";
-        button.appendChild(icon);
-        box.appendChild(input);
-        box.appendChild(button);
-        autoCon.appendChild(box);
-    })
+
+    let autoCon = document.querySelector(".downAuto");
+
+    if (autodl.length <= 0){
+        let Text = document.createElement('div');
+        Text.style.fontSize = "5vw"
+        Text.style.fontFamily = "Cursive"
+        Text.style.textAlign = "center"
+        Text.style.color = "#FFFF"
+        Text.append("NO NEW ANIME FOR TODAY")
+        autoCon.appendChild(Text);
+    } else {
+        autodl.forEach((val, idx) => {
+            let box = document.createElement('div');
+            box.className = "copyBox";
+            let input = document.createElement('input');
+            input.type = "text";
+            input.className = "copyText";
+            input.id = 'copyT-' + (idx + 1);
+            input.readOnly = true;
+            input.value = val['key'];
+            let button = document.createElement('button');
+            button.className = "copyButton";
+            if (val['magnet'] === -1) {
+                button.disabled = true;
+                input.style.backgroundColor = "red";
+                button.style.backgroundColor = "red";
+            } else {
+                showUpdates()
+                button.onclick = () => copyToClipboard(val['magnet']);
+            }
+            let icon = document.createElement('i');
+            icon.className = "glyphicon glyphicon-magnet";
+            icon.style = "color:black;";
+            button.appendChild(icon);
+            box.appendChild(input);
+            box.appendChild(button);
+            autoCon.appendChild(box);
+        })
+    }
     document.getElementById("weekDay").innerHTML = "(" + days[d.getDay()] + ")";
     document.getElementById("loader-1").style.display = "none";
 }
@@ -135,7 +146,7 @@ async function DownAnimeManu() {
         document.getElementsByClassName("inner-container-down")[0].style.display = "grid";
         document.getElementById("ManualOutput").style.display = "grid";
         document.getElementById("copyT").value = manudl['key'];
-        // document.getElementById("copyButtonManu").onclick = () => copyToClipboard(manudl['magnet'], downIdx);
+        document.getElementById("copyButtonManu").onclick = () => copyToClipboard(manudl['magnet']);
         document.getElementById("loader-2").style.display = "none";
     }
 }
@@ -172,7 +183,7 @@ async function DownAnimeNew() {
         input.value = val['key'];
         let button = document.createElement('button');
         button.className = "copyButton";
-        // button.onclick = () => copyToClipboard(val['magnet']);
+        button.onclick = () => copyToClipboard(val['magnet']);
         let icon = document.createElement('i');
         icon.className = "glyphicon glyphicon-magnet";
         icon.style = "color:black;";
@@ -260,20 +271,11 @@ function insertDB(){
     showUpdates()
 }
 
-
-// function copyToClipboard(magnet, sno) {
-//     const options = {
-//         scriptPath: path.join(__dirname, '../pyPro/'),
-//         args: [magnet]
-//     }
-
-//     if (magnet !== "") {
-//         new PythonShell('copyToClipboard.py', options);
-//         if (confirm("Magnet Link Copied to Clipboard....\nDo want to commit the changes.") && sno != '') {
-//             commitUpdates(sno);
-//             alert("Commit Successful....");
-//         }
-//     } else {
-//         alert("Nothing to copy.....");
-//     }
-// }
+function copyToClipboard(magnet) {
+    if (!navigator.clipboard) {
+        alert("X_X_X_X_X COPY FAILED X_X_X_X_X");
+        return;
+    }
+    navigator.clipboard.writeText(magnet);
+    alert("Magnet Link Copied to Clipboard....");
+}

@@ -3,9 +3,9 @@ const Downloader = require('../scripts/Downloader/Downloader.js')
 const dl = new Downloader()
 
 let count = 1;
-const addRowBtn = document.getElementById("addRow");
 const Table = document.getElementsByClassName("Table")[0];
-addRowBtn.onclick = () => {
+
+function AddRow() {
     const row = document.createElement('div');
     row.className = 'tableRows';
     Table.appendChild(row);
@@ -56,6 +56,7 @@ function showTable() {
         aniliCol.style.backgroundColor = 'orangered';
         aniliCol.style.borderColor = 'red';
         aniliCol.readOnly = true;
+        aniliCol.style.textAlign = 'right';
         row.appendChild(aniliCol);
         for (let j in rows[i]) {
             const aniliCol = addRow(rows[i][j])
@@ -67,13 +68,40 @@ function showTable() {
         const rem = document.createElement('button');
         const ico = document.createElement('i');
         rem.class = 'remove'
-        // rem.value = sno-1
+        // rem.value = count-2
         // rem.onclick = () => {
-        //     dl.delete(rem.value)
+        //     const rows = document.querySelectorAll(".tableRows");
+        //     console.log(rem.value)
+        //     rows[rem.value].remove()
         // }
         ico.className = 'glyphicon glyphicon-remove'
         ico.style.fontSize = "1vw"
         rem.appendChild(ico);
         row.appendChild(rem);
     }
+}
+
+function updateTable(){
+    function getTableData() {
+        const dataMat = new Array()
+        try {
+            const rows = document.querySelectorAll(".tableRows");
+            for(let i in rows){
+                const row = rows[i].querySelectorAll('input');
+                const dataSet = new Array()
+                for(let j in row){
+                    const value = row[j].value
+                    if(j != 0 && value != undefined)
+                        dataSet.push(value)
+                }
+                dataMat.push(dataSet)
+            }
+        } catch(err){
+            console.log(dataMat)
+            return dataMat
+        }
+    }
+
+    dl.refreshTable(getTableData())
+    window.location.reload();
 }

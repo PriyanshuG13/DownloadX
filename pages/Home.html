@@ -8,138 +8,135 @@
     <link rel="stylesheet" href="../styles/Home.css">
 </head>
 <body onload="AnimeListFull() || DownAnimeAuto()">
-<div class="outer-container">
-    <div class="headerBar">
-        <!-- <button id="leftButton">
-            <i class="glyphicon glyphicon-chevron-left" style="font-size: 20px;"></i><a href="Home.html">Back</a>
-        </button> -->
-        <h1 class="header">DownloadX</h1>
-        <button id="rightButton">
-            <a href="inputForm.html">ADD</a> <i class="glyphicon glyphicon-plus-sign" style="font-size: 20px;"></i>
-        </button>
-    </div>
-    <div class="containerMiddle">
-        <div class="inner-container">
-            <div class="inner-container-up">
-                <label class="weekDays" id='weekDay'></label>
-                <div class="headCen">Automatic</div>
-                <div class="downAuto">
-                    <div class="loader" id="loader-1"></div>
+    <div class="outer-container">
+        <div class="headerBar">
+            <!-- <button id="leftButton">
+                <i class="glyphicon glyphicon-chevron-left" style="font-size: 20px;"></i><a href="Home.html">Back</a>
+            </button> -->
+            <h1 class="header">DownloadX</h1>
+            <button id="rightButton">
+                <a href="inputForm.html">ADD</a> <i class="glyphicon glyphicon-plus-sign" style="font-size: 20px;"></i>
+            </button>
+        </div>
+        <div class="containerMiddle">
+            <div class="inner-container">
+                <div class="inner-container-up" id="containerLeft">
+                    <div class="headCen">Automatic</div>
+                    <label class="weekDays" id='weekDay'></label>
+                    <div class="downAuto">
+                        <div class="loader" id="loader-1"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="inner-container-up">
-                <div class="headCen">Updated Changes</div>
-                <div class="inner-table">
-                    <div class="Table">
-                        <div class="tableHeaders">
-                            <input value="Idx" readonly>
-                            <input value="Anime Name" readonly>
-                            <input value="Episodes" readonly>
-                            <input readonly>
-                            </button>
+                <div class="inner-container-up" id="containerRight">
+                    <div class="headCen">Updated Changes</div>
+                    <div class="inner-table">
+                        <div class="Table">
+                            <div class="tableHeaders">
+                                <input value="Idx" readonly>
+                                <input value="Anime Name" readonly>
+                                <input value="Episodes" readonly>
+                                <input readonly>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <button style="margin: 0.5vw 4vw;max-height: 2.5vw;" onclick="commitToDB()">
+                        Commit Changes to DB</button>
+                </div>
+                <div class="inner-container-middle" id="containerLeft">
+                    <div class="headCen">Manually Select</div>
+                    <div class="downManu">
+                        <div class="select-box">
+                            <div class="options-container"></div>
+                            <div class="selected">Select Anime</div>
+                        </div>
+                        <button onclick="DownAnimeManu()">
+                            <i class="glyphicon glyphicon-download-alt" style="font-size: 3vw;"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="inner-container-middle" id="containerRight">
+                    <div class="headCen">New Anime</div>
+                    <div class="downNew">
+                        <label style="
+                                        color: azure;
+                                        font-size: 1.3vw;
+                                        font-weight: lighter;
+                                    ">
+                            Anime Name:
+                        </label>
+                        <input class="inputField"
+                               id="nameNew"
+                               placeholder="[SubsPlease] Black Clover (1080p)"
+                        />
+                        <label style="
+                                        color: azure;
+                                        font-size: 1.3vw;
+                                        font-weight: lighter;
+                                    ">
+                            First Episode:
+                        </label>
+                        <div style="display: grid; grid-template-columns: 6vw auto;">
+                            <input class="inputField"
+                                   id="EPNew"
+                                   type="number"
+                                   min=1
+                                   value=1
+                                   style="width: 5vw;"/>
+                            <button onclick="DownAnimeNew()">Download Anime(Full)</button>
                         </div>
                     </div>
                 </div>
-                <button style="margin: 0.5vw 4vw;max-height: 2.5vw;" onclick="commitToDB()">
-                    Commit Changes to DB</button>
-            </div>
-            <div class="inner-container-middle">
-                <div class="headCen">Manually Select</div>
-                <div class="downManu">
-                    <div class="select-box">
-                        <div class="options-container"></div>
-                        <div class="selected">Select Anime</div>
+                <div class="inner-container-down" id="containerCenter">
+                    <div class="headCen">Output</div>
+                    <div class="inner-output" id="ManualOutput">
+                        <div class="headCen" style="font-size: 1.4vw;text-decoration: none;">Manual</div>
+                        <div class="copyBox" id="copyBoxManu">
+                            <input class="copyText" type="text" id="copyT" readonly/>
+                            <button class="copyButton" id="copyButtonManu" onclick="copyToClipboard(value)">
+                                <i class="glyphicon glyphicon-magnet" style="color:black;"></i></button>
+                        </div>
                     </div>
-                    <button onclick="DownAnimeManu()">
-                        <i class="glyphicon glyphicon-download-alt" style="font-size: 3vw;"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="inner-container-middle">
-                <div class="headCen">New Anime</div>
-                <div class="downNew">
-                    <label style="
-                                    color: azure;
-                                    font-size: 1.2vw;
-                                    font-weight: lighter;
-                                ">
-                        Anime Name:
-                    </label>
-                    <input class="inputField"
-                           id="nameNew"
-                           placeholder="[SubsPlease] Black Clover (1080p)"
-                    />
-                    <label style="
-                                    color: azure;
-                                    font-size: 1.2vw;
-                                    font-weight: lighter;
-                                ">
-                        First Episode:
-                    </label>
-                    <div style="display: grid; grid-template-columns: 6vw auto;">
-                        <input class="inputField"
-                               id="EPNew"
-                               type="number"
-                               min=1
-                               value=1
-                               style="width: 5vw;"/>
-                        <button onclick="DownAnimeNew()">Download Anime(Full)</button>
+                    <div class="inner-output" id="NewOutput">
+                        <div class="headCen" style="font-size: 1.4vw;text-decoration: none;">New</div>
                     </div>
                 </div>
             </div>
+            <div class="loader" id="loader-2"></div>
         </div>
-        <div class="loader" id="loader-2"></div>
-        <div class="inner-container">
-            <div class="blankSpace"></div>
-            <div class="inner-container-down">
-                <div class="headCen">Output</div>
-                <div class="inner-output" id="ManualOutput">
-                    <div class="headCen" style="font-size: 1.4vw;text-decoration: none;">Manual</div>
-                    <div class="copyBox" id="copyBoxManu">
-                        <input class="copyText" type="text" id="copyT" readonly/>
-                        <button class="copyButton" id="copyButtonManu" onclick="copyToClipboard(value)">
-                            <i class="glyphicon glyphicon-magnet" style="color:black;"></i></button>
-                    </div>
+        <div class="footerBar">
+        </div>
+    </div>
+    <div class="modal">
+        <div class="modal-content" id="modal-content-insert">
+            <div class="modal-header">
+                <span class="close"><i class="glyphicon glyphicon-remove-sign" style="font-size: 1.2vw;"></i></span>
+                <h2 style="font-weight: 900;">UPDATE ANIME DB</h2>
+            </div>
+            <div class="modal-body">
+                <div class="upAniDB">
+                    <label>Provider:</label>
+                    <input placeholder="[SubsPlease]"/>
+                    <label>Anime Name:</label>
+                    <input placeholder="One Piece"/>
+                    <label>Season:</label>
+                    <input placeholder="S2 or Null"/>
+                    <label>Episode No.:</label>
+                    <input type="number" placeholder="Episode" min="1"/>
+                    <label>Quality:</label>
+                    <input placeholder="[1080p] or [CR-Dub 720p x264 AAC]"/>
+                    <label>Audio:</label>
+                    <input placeholder="(SUB) or (DUB)"/>
+                    <label>Air_Day:</label>
+                    <input placeholder="Sunday, Monday, etc"/>
                 </div>
-                <div class="inner-output" id="NewOutput">
-                    <div class="headCen" style="font-size: 1.4vw;text-decoration: none;">New</div>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="insertDB()">Insert</button>
             </div>
         </div>
     </div>
-    <div class="footerBar">
-    </div>
-</div>
-<div class="modal">
-    <div class="modal-content" id="modal-content-insert">
-        <div class="modal-header">
-            <span class="close"><i class="glyphicon glyphicon-remove-sign" style="font-size: 1.2vw;"></i></span>
-            <h2 style="font-weight: 900;">UPDATE ANIME DB</h2>
-        </div>
-        <div class="modal-body">
-            <div class="upAniDB">
-                <label>Provider:</label>
-                <input placeholder="[SubsPlease]"/>
-                <label>Anime Name:</label>
-                <input placeholder="One Piece"/>
-                <label>Season:</label>
-                <input placeholder="S2 or Null"/>
-                <label>Episode No.:</label>
-                <input type="number" placeholder="Episode" min="1"/>
-                <label>Quality:</label>
-                <input placeholder="[1080p] or [CR-Dub 720p x264 AAC]"/>
-                <label>Audio:</label>
-                <input placeholder="(SUB) or (DUB)"/>
-                <label>Air_Day:</label>
-                <input placeholder="Sunday, Monday, etc"/>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button onclick="insertDB()">Insert</button>
-        </div>
-    </div>
-</div>
-<progress value="50" max="100"></progress>
+<!-- <progress value="50" max="100"></progress> -->
 <script src="../scripts/Downloader/index.js"></script>
 </body>
 </html>

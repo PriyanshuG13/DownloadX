@@ -49,6 +49,27 @@ class DatabaseManager {
         adbn[rowNo].Commit = true
     }
 
+    refreshTable(rows) {
+        const table = new Array()
+        for(let i in rows) {
+            const row = {
+                Provider: rows[i][0],
+                Anime_Name: rows[i][1],
+                Season: rows[i][2],
+                EP: rows[i][3],
+                Quality: rows[i][4],
+                Audio: rows[i][5],
+                Air_Day: rows[i][6]
+            }
+            table.push(row)
+        }
+        this.animedb[this.mainkey] = table
+        const json = JSON.stringify(this.animedb, null, 4);
+        fs.writeFile(this.animedbFilePath, json, function (err) {
+            if (err) return;
+        });
+    }
+
     commit() {
         let j = 0
         const adbn = this.animedbEdited[this.mainkey]

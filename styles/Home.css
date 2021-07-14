@@ -81,31 +81,62 @@ button.active {
 .headerBar {
     display: grid;
     grid-template-columns: 92% 8%;
+    border-top: solid azure;
     border-bottom: solid azure;
     background-color: royalblue;
 }
 
 .containerMiddle {
     display: grid;
+    height: 45vw;
+    margin-top: 1vw;
     grid-template-rows: auto;
     grid-gap: 0.5vw;
+    align-items: center;
+    justify-items: center;
 }
 
 .inner-container {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 19vw auto auto 19vw;
     grid-gap: 0.5vw;
+    margin: 1.5vw;
 }
 
 .inner-container-up, .inner-container-middle, .inner-container-down {
     display: grid;
     background-color: royalblue;
     padding: 0 1vw 1vw 1vw;
+    border: solid azure;
 }
 
 .inner-container-up {
-    width: 49.75vw;
     height: 20vw;
+}
+
+.inner-container-middle {
+    height: 9vw;
+}
+
+.inner-container-down {
+    display: none;
+    max-height: 30vw;
+    align-self: center;
+}
+
+#containerLeft{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+#containerRight{
+    grid-column-start: 3;
+    grid-column-end: 5;
+}
+
+#containerCenter{
+    grid-column-start: 2;
+    grid-column-end: 4;
 }
 
 .Table {
@@ -175,22 +206,12 @@ button.active {
     opacity: 1;
 }
 
-.inner-container-middle {
-    width: 49.75vw;
-    height: 9vw;
-}
-
-.inner-container-down {
-    display: none;
-    width: 60vw;
-    max-height: 30vw;
-}
-
 .downNew {
     display: grid;
     grid-template-columns: 12.5vw auto;
     grid-template-rows: 2vw;
     align-items: center;
+    grid-gap: 0.25vw;
     justify-content: center;
 }
 
@@ -537,18 +558,24 @@ button.active {
 
 @media (max-width: 1000px) {
     .inner-container {
-        grid-template-columns: auto;
+        grid-template-columns: 600px;
         justify-content: center;
     }
 
-    .inner-container-up, .inner-container-middle, .inner-container-down {
-        width: 100vw;
+    .inner-container-up {
+        height: 200px;
+    }
+    
+    .inner-container-middle {
+        height: 90px;
+    }
+    
+    .inner-container-down {
+        max-height: 300px;
     }
 
-    /* .headCen{
-        font-size: 24px;
+    #containerLeft, #containerRight, #containerCenter{
+        grid-column-start: 1;
+        grid-column-end: 2;
     }
-    .copyText{
-        font-size: 14px;
-    } */
 }
