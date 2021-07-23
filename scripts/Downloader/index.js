@@ -94,7 +94,7 @@ async function DownAnimeAuto() {
 
     if (autodl.length <= 0){
         let Text = document.createElement('div');
-        Text.style.fontSize = "5vw"
+        Text.style.fontSize = "60px"
         Text.style.fontFamily = "Cursive"
         Text.style.textAlign = "center"
         Text.style.color = "#FFFF"

@@ -12,12 +12,12 @@ html {
 ::-webkit-input-placeholder {
     color: azure;
     font-family: "Courier New";
-    font-size: 1.2vw;
+    font-size: 16px;
 }
 
 button {
     border: none;
-    font-size: 1.2vw;
+    font-size: 16px;
     background-color: dodgerblue;
     font-weight: bold;
     font-family: "Courier New";
@@ -52,12 +52,12 @@ button.active {
 }
 
 .inputField {
-    width: 32vw;
+    width: 450px;
     border-radius: 0.25vw;
     border-color: azure;
     border-width: 1px;
     margin: 0.2vw;
-    font-size: 1.2vw;
+    font-size: 16px;
     background-color: dodgerblue;
     color: azure;
 }
@@ -88,7 +88,7 @@ button.active {
 
 .containerMiddle {
     display: grid;
-    height: 45vw;
+    height: 600px;
     margin-top: 1vw;
     grid-template-rows: auto;
     grid-gap: 0.5vw;
@@ -98,46 +98,32 @@ button.active {
 
 .inner-container {
     display: grid;
-    grid-template-columns: 19vw auto auto 19vw;
-    grid-gap: 0.5vw;
+    grid-template-columns: 750px;
+    grid-gap: 5px;
     margin: 1.5vw;
 }
 
 .inner-container-up, .inner-container-middle, .inner-container-down {
     display: grid;
     background-color: royalblue;
-    padding: 0 1vw 1vw 1vw;
+    padding: 0 10px 10px 10px;
     border: solid azure;
 }
 
 .inner-container-up {
-    height: 20vw;
+    height: 300px;
 }
 
 .inner-container-middle {
-    height: 9vw;
+    max-height: 135px;
 }
 
 .inner-container-down {
     display: none;
-    max-height: 30vw;
+    max-height: 500px;
     align-self: center;
 }
 
-#containerLeft{
-    grid-column-start: 1;
-    grid-column-end: 3;
-}
-
-#containerRight{
-    grid-column-start: 3;
-    grid-column-end: 5;
-}
-
-#containerCenter{
-    grid-column-start: 2;
-    grid-column-end: 4;
-}
 
 .Table {
     display: grid;
@@ -153,7 +139,7 @@ button.active {
 
 .inner-table .tableHeaders, .inner-table .tableRows {
     display: grid;
-    grid-template-columns: 3.5vw 32.5vw 8.75vw 2vw;
+    grid-template-columns: 50px 450px 120px 40px;
 }
 
 .modal-body .tableHeaders, .modal-body .tableRows {
@@ -163,26 +149,24 @@ button.active {
 
 .tableHeaders input {
     font-weight: bolder;
-    font-size: 1.6vw;
+    font-size: 20px;
     background-color: orangered;
     outline: none;
     border: red solid 0.1vw;
-    padding: 0.2vw;
+    padding: 3px;
 }
 
 .tableRows input {
-    font-size: 1.3vw;
+    font-size: 16px;
     background-color: orange;
     outline: none;
     border: orangered solid 0.1vw;
-    padding: 0.2vw;
-    max-height: 2vw;
+    padding: 1.5px;
 }
 
 .tableRows button {
     border: orangered solid 0.1vw;
     background-color: orange;
-    max-height: 2vw;
     color: azure;
     cursor: pointer;
     outline: none;
@@ -208,7 +192,7 @@ button.active {
 
 .downNew {
     display: grid;
-    grid-template-columns: 12.5vw auto;
+    grid-template-columns: 175px auto;
     grid-template-rows: 2vw;
     align-items: center;
     grid-gap: 0.25vw;
@@ -230,13 +214,13 @@ button.active {
 
 .downManu button{
     align-self: flex-start;
-    min-height: 5vw;
+    min-height: 72px;
     margin: 0 0.75%;
     padding-top: 0.45vw;
 }
 
 .headCen {
-    font-size: 2vw;
+    font-size: 28px;
     font-weight: bold;
     color: azure;
     justify-self: center;
@@ -272,8 +256,8 @@ button.active {
     color: azure;
     position: relative;
     order: 0;
-    height: 5vw;
-    font-size: 1.4vw;
+    height: 72px;
+    font-size: 20px;
     padding-right: 2vw;
     font-weight: bold;
 }
@@ -285,14 +269,14 @@ button.active {
     background-repeat: no-repeat;
     position: absolute;
     height: 100%;
-    width: 3vw;
+    width: 50px;
     right: 0;
     top: 1vw;
     transition: all 0.4s;
 }
 
 .select-box .options-container.active {
-    max-height: 15vw;
+    max-height: 200px;
     opacity: 1;
     overflow-y: scroll;
 }
@@ -327,7 +311,7 @@ button.active {
 
 .select-box label {
     cursor: pointer;
-    font-size: 1vw;
+    font-size: 14px;
 }
 
 .select-box .option .aniR {
@@ -339,7 +323,7 @@ button.active {
     grid-template-columns: 80% 8%;
     align-items: center;
     justify-content: center;
-    margin: 1vw;
+    margin: 12px;
 }
 
 .copyText {
@@ -349,9 +333,9 @@ button.active {
     border: orangered solid 2px;
     background-color: orange;
     outline: none;
-    padding: 0.5vw;
+    padding: 5px;
     color: azure;
-    font-size: 1.4vw;
+    font-size: 20px;
     font-family: inherit;
     overflow-x: scroll;
     font-weight: bold;
@@ -366,8 +350,8 @@ button.active {
     background-color: orange;
     outline: none;
     color: azure;
-    font-size: 1.55vw;
-    padding-top: 0.75vw;
+    font-size: 20px;
+    padding-top: 7.5px;
     font-family: inherit;
     border-bottom-right-radius: 0.8vw;
     border-top-right-radius: 0.4vw;
@@ -556,26 +540,24 @@ button.active {
 }
 
 
-@media (max-width: 1000px) {
+@media (min-width: 1400px) {
     .inner-container {
-        grid-template-columns: 600px;
+        grid-template-columns: 19vw auto auto 19vw;
         justify-content: center;
     }
 
-    .inner-container-up {
-        height: 200px;
-    }
-    
-    .inner-container-middle {
-        height: 90px;
-    }
-    
-    .inner-container-down {
-        max-height: 300px;
+    #containerLeft{
+        grid-column-start: 1;
+        grid-column-end: 3;
     }
 
-    #containerLeft, #containerRight, #containerCenter{
-        grid-column-start: 1;
-        grid-column-end: 2;
+    #containerRight{
+        grid-column-start: 3;
+        grid-column-end: 5;
+    }
+
+    #containerCenter{
+        grid-column-start: 2;
+        grid-column-end: 4;
     }
 }
