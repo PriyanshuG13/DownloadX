@@ -41,7 +41,7 @@ span.onclick = function () {
     modal.style.display = "none";
 }
 window.onclick = function (event) {
-    if (event.target == modal) {
+    if (event.target === modal) {
         modal.style.display = "none";
     }
 }
@@ -205,7 +205,7 @@ function showUpdates(){
     } catch(err){
         console.log(err)
     }
-    
+
     let sno = 0
     for (let i in rows) {
         let data = rows[i]
@@ -226,7 +226,7 @@ function showUpdates(){
                         aniliCol.id = 'index'
                         aniliCol.style.backgroundColor = 'orangered';
                         aniliCol.style.borderColor = 'red';
-                    } 
+                    }
                     if (j === 'EP')
                         aniliCol.style.textAlign = 'right';
                     row.appendChild(aniliCol);

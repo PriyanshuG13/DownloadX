@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8f830e08-4146-43f4-8be4-791fb9d0e7a6" name="Default Changelist" comment="Making Responsive">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/Home.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/Home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/Downloader/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/Downloader/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +43,8 @@
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="go.formatter.settings.were.checked" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Downloader/Database" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
@@ -121,7 +123,18 @@
       <workItem from="1626295072604" duration="65000" />
       <workItem from="1626596767571" duration="113000" />
       <workItem from="1627045584986" duration="373000" />
-      <workItem from="1627049813211" duration="490000" />
+      <workItem from="1627049813211" duration="527000" />
+      <workItem from="1628701338170" duration="33000" />
+      <workItem from="1628701471533" duration="4000" />
+      <workItem from="1628769548207" duration="804000" />
+      <workItem from="1628770385919" duration="17000" />
+      <workItem from="1628772025739" duration="14000" />
+      <workItem from="1628776665777" duration="896000" />
+      <workItem from="1629393958521" duration="138000" />
+      <workItem from="1630671601844" duration="60000" />
+      <workItem from="1630673693097" duration="23000" />
+      <workItem from="1630673735276" duration="32000" />
+      <workItem from="1630680444105" duration="38000" />
     </task>
     <task id="LOCAL-00001" summary="Working on Downloader.js">
       <created>1626039849129</created>
@@ -165,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627049922921</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Making Responsive">
+      <created>1627050313362</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1627050313362</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,7 +210,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="Making Responsive" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/DownloadX$DownloadAnime.coverage" NAME="DownloadAnime Coverage Results" MODIFIED="1623702961212" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyPro" />
     <SUITE FILE_PATH="coverage/DownloadX$AnimeDB.coverage" NAME="AnimeDB Coverage Results" MODIFIED="1623703173752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyPro" />
+    <SUITE FILE_PATH="coverage/DownloadX$DownloadAnime.coverage" NAME="DownloadAnime Coverage Results" MODIFIED="1623702961212" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyPro" />
   </component>
 </project>
